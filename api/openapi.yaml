@@ -4239,11 +4239,9 @@ components:
       type: object
   securitySchemes:
     kagi:
-      description: "Kagi Bot token for automated access, Please prefix with `Bot `.\
-        \ It should match the format `Bot {value}`"
-      in: header
-      name: Authorization
-      type: apiKey
+      description: Kagi API key from https://kagi.com/dev/api_keys
+      scheme: bearer
+      type: http
     kagi-translate:
       description: Kagi Translation token used to access the traslate API
       scheme: bearer

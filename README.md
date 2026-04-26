@@ -210,22 +210,12 @@ Class | Method | HTTP request | Description
 Authentication schemes defined for the API:
 ### kagi
 
-- **Type**: API key
-- **API key parameter name**: Authorization
-- **Location**: HTTP header
-
-Note, each API key must be added to a map of `map[string]APIKey` where the key is: kagi and passed in as the auth context for each request.
+- **Type**: HTTP Bearer token authentication
 
 Example
 
 ```go
-auth := context.WithValue(
-		context.Background(),
-		openapi.ContextAPIKeys,
-		map[string]openapi.APIKey{
-			"kagi": {Key: "API_KEY_STRING"},
-		},
-	)
+auth := context.WithValue(context.Background(), openapi.ContextAccessToken, "BEARER_TOKEN_STRING")
 r, err := client.Service.Operation(auth, args)
 ```
 
