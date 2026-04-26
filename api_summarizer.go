@@ -108,12 +108,14 @@ func (a *SummarizerAPIService) SummarizeTextExecute(r ApiSummarizeTextRequest) (
 		parameterAddToHeaderOrQuery(localVarQueryParams, "engine", r.engine, "form", "")
 	} else {
 		var defaultValue string = "cecil"
+		parameterAddToHeaderOrQuery(localVarQueryParams, "engine", defaultValue, "form", "")
 		r.engine = &defaultValue
 	}
 	if r.summaryType != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "summary_type", r.summaryType, "form", "")
 	} else {
 		var defaultValue string = "summary"
+		parameterAddToHeaderOrQuery(localVarQueryParams, "summary_type", defaultValue, "form", "")
 		r.summaryType = &defaultValue
 	}
 	if r.targetLanguage != nil {
@@ -123,6 +125,7 @@ func (a *SummarizerAPIService) SummarizeTextExecute(r ApiSummarizeTextRequest) (
 		parameterAddToHeaderOrQuery(localVarQueryParams, "cache", r.cache, "form", "")
 	} else {
 		var defaultValue bool = true
+		parameterAddToHeaderOrQuery(localVarQueryParams, "cache", defaultValue, "form", "")
 		r.cache = &defaultValue
 	}
 	// to determine the Content-Type header
@@ -290,12 +293,14 @@ func (a *SummarizerAPIService) SummarizeURLExecute(r ApiSummarizeURLRequest) (*S
 		parameterAddToHeaderOrQuery(localVarQueryParams, "engine", r.engine, "form", "")
 	} else {
 		var defaultValue string = "cecil"
+		parameterAddToHeaderOrQuery(localVarQueryParams, "engine", defaultValue, "form", "")
 		r.engine = &defaultValue
 	}
 	if r.summaryType != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "summary_type", r.summaryType, "form", "")
 	} else {
 		var defaultValue string = "summary"
+		parameterAddToHeaderOrQuery(localVarQueryParams, "summary_type", defaultValue, "form", "")
 		r.summaryType = &defaultValue
 	}
 	if r.targetLanguage != nil {
@@ -305,6 +310,7 @@ func (a *SummarizerAPIService) SummarizeURLExecute(r ApiSummarizeURLRequest) (*S
 		parameterAddToHeaderOrQuery(localVarQueryParams, "cache", r.cache, "form", "")
 	} else {
 		var defaultValue bool = true
+		parameterAddToHeaderOrQuery(localVarQueryParams, "cache", defaultValue, "form", "")
 		r.cache = &defaultValue
 	}
 	parameterAddToHeaderOrQuery(localVarQueryParams, "url", r.url, "form", "")

@@ -31,6 +31,13 @@ type SearchRequest struct {
 	Lens *SearchRequestLens `json:"lens,omitempty"`
 	// Number of seconds to allow for collecting search results. Lower values will return results more quickly, but may be lower quality or inconsistent between calls. If omitted, will use the latest recommended value by Kagi.
 	Timeout *float32 `json:"timeout,omitempty"`
+	// Page number for paginated results. Must be between 1 and 10.
+	Page *int32 `json:"page,omitempty"`
+	// Maximum number of results to return. Must be between 1 and 1024.
+	Limit *int32 `json:"limit,omitempty"`
+	Filters *SearchRequestFilters `json:"filters,omitempty"`
+	Extract *SearchRequestExtract `json:"extract,omitempty"`
+	Personalizations *SearchRequestPersonalizations `json:"personalizations,omitempty"`
 }
 
 type _SearchRequest SearchRequest
@@ -209,6 +216,166 @@ func (o *SearchRequest) SetTimeout(v float32) {
 	o.Timeout = &v
 }
 
+// GetPage returns the Page field value if set, zero value otherwise.
+func (o *SearchRequest) GetPage() int32 {
+	if o == nil || IsNil(o.Page) {
+		var ret int32
+		return ret
+	}
+	return *o.Page
+}
+
+// GetPageOk returns a tuple with the Page field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SearchRequest) GetPageOk() (*int32, bool) {
+	if o == nil || IsNil(o.Page) {
+		return nil, false
+	}
+	return o.Page, true
+}
+
+// HasPage returns a boolean if a field has been set.
+func (o *SearchRequest) HasPage() bool {
+	if o != nil && !IsNil(o.Page) {
+		return true
+	}
+
+	return false
+}
+
+// SetPage gets a reference to the given int32 and assigns it to the Page field.
+func (o *SearchRequest) SetPage(v int32) {
+	o.Page = &v
+}
+
+// GetLimit returns the Limit field value if set, zero value otherwise.
+func (o *SearchRequest) GetLimit() int32 {
+	if o == nil || IsNil(o.Limit) {
+		var ret int32
+		return ret
+	}
+	return *o.Limit
+}
+
+// GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SearchRequest) GetLimitOk() (*int32, bool) {
+	if o == nil || IsNil(o.Limit) {
+		return nil, false
+	}
+	return o.Limit, true
+}
+
+// HasLimit returns a boolean if a field has been set.
+func (o *SearchRequest) HasLimit() bool {
+	if o != nil && !IsNil(o.Limit) {
+		return true
+	}
+
+	return false
+}
+
+// SetLimit gets a reference to the given int32 and assigns it to the Limit field.
+func (o *SearchRequest) SetLimit(v int32) {
+	o.Limit = &v
+}
+
+// GetFilters returns the Filters field value if set, zero value otherwise.
+func (o *SearchRequest) GetFilters() SearchRequestFilters {
+	if o == nil || IsNil(o.Filters) {
+		var ret SearchRequestFilters
+		return ret
+	}
+	return *o.Filters
+}
+
+// GetFiltersOk returns a tuple with the Filters field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SearchRequest) GetFiltersOk() (*SearchRequestFilters, bool) {
+	if o == nil || IsNil(o.Filters) {
+		return nil, false
+	}
+	return o.Filters, true
+}
+
+// HasFilters returns a boolean if a field has been set.
+func (o *SearchRequest) HasFilters() bool {
+	if o != nil && !IsNil(o.Filters) {
+		return true
+	}
+
+	return false
+}
+
+// SetFilters gets a reference to the given SearchRequestFilters and assigns it to the Filters field.
+func (o *SearchRequest) SetFilters(v SearchRequestFilters) {
+	o.Filters = &v
+}
+
+// GetExtract returns the Extract field value if set, zero value otherwise.
+func (o *SearchRequest) GetExtract() SearchRequestExtract {
+	if o == nil || IsNil(o.Extract) {
+		var ret SearchRequestExtract
+		return ret
+	}
+	return *o.Extract
+}
+
+// GetExtractOk returns a tuple with the Extract field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SearchRequest) GetExtractOk() (*SearchRequestExtract, bool) {
+	if o == nil || IsNil(o.Extract) {
+		return nil, false
+	}
+	return o.Extract, true
+}
+
+// HasExtract returns a boolean if a field has been set.
+func (o *SearchRequest) HasExtract() bool {
+	if o != nil && !IsNil(o.Extract) {
+		return true
+	}
+
+	return false
+}
+
+// SetExtract gets a reference to the given SearchRequestExtract and assigns it to the Extract field.
+func (o *SearchRequest) SetExtract(v SearchRequestExtract) {
+	o.Extract = &v
+}
+
+// GetPersonalizations returns the Personalizations field value if set, zero value otherwise.
+func (o *SearchRequest) GetPersonalizations() SearchRequestPersonalizations {
+	if o == nil || IsNil(o.Personalizations) {
+		var ret SearchRequestPersonalizations
+		return ret
+	}
+	return *o.Personalizations
+}
+
+// GetPersonalizationsOk returns a tuple with the Personalizations field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SearchRequest) GetPersonalizationsOk() (*SearchRequestPersonalizations, bool) {
+	if o == nil || IsNil(o.Personalizations) {
+		return nil, false
+	}
+	return o.Personalizations, true
+}
+
+// HasPersonalizations returns a boolean if a field has been set.
+func (o *SearchRequest) HasPersonalizations() bool {
+	if o != nil && !IsNil(o.Personalizations) {
+		return true
+	}
+
+	return false
+}
+
+// SetPersonalizations gets a reference to the given SearchRequestPersonalizations and assigns it to the Personalizations field.
+func (o *SearchRequest) SetPersonalizations(v SearchRequestPersonalizations) {
+	o.Personalizations = &v
+}
+
 func (o SearchRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -231,6 +398,21 @@ func (o SearchRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Timeout) {
 		toSerialize["timeout"] = o.Timeout
+	}
+	if !IsNil(o.Page) {
+		toSerialize["page"] = o.Page
+	}
+	if !IsNil(o.Limit) {
+		toSerialize["limit"] = o.Limit
+	}
+	if !IsNil(o.Filters) {
+		toSerialize["filters"] = o.Filters
+	}
+	if !IsNil(o.Extract) {
+		toSerialize["extract"] = o.Extract
+	}
+	if !IsNil(o.Personalizations) {
+		toSerialize["personalizations"] = o.Personalizations
 	}
 	return toSerialize, nil
 }

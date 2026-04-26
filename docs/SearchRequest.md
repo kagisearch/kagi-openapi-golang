@@ -9,6 +9,11 @@ Name | Type | Description | Notes
 **LensId** | Pointer to **string** | A lens ID, as shown on https://kagi.com/settings/lenses when a lens is set to be shareable. Can be just the ID portion of the URL (&#x60;https://kagi.com/lenses/ID&#x60;), or the full URL. | [optional] 
 **Lens** | Pointer to [**SearchRequestLens**](SearchRequestLens.md) |  | [optional] 
 **Timeout** | Pointer to **float32** | Number of seconds to allow for collecting search results. Lower values will return results more quickly, but may be lower quality or inconsistent between calls. If omitted, will use the latest recommended value by Kagi. | [optional] 
+**Page** | Pointer to **int32** | Page number for paginated results. Must be between 1 and 10. | [optional] 
+**Limit** | Pointer to **int32** | Maximum number of results to return. Must be between 1 and 1024. | [optional] 
+**Filters** | Pointer to [**SearchRequestFilters**](SearchRequestFilters.md) |  | [optional] 
+**Extract** | Pointer to [**SearchRequestExtract**](SearchRequestExtract.md) |  | [optional] 
+**Personalizations** | Pointer to [**SearchRequestPersonalizations**](SearchRequestPersonalizations.md) |  | [optional] 
 
 ## Methods
 
@@ -148,6 +153,131 @@ SetTimeout sets Timeout field to given value.
 `func (o *SearchRequest) HasTimeout() bool`
 
 HasTimeout returns a boolean if a field has been set.
+
+### GetPage
+
+`func (o *SearchRequest) GetPage() int32`
+
+GetPage returns the Page field if non-nil, zero value otherwise.
+
+### GetPageOk
+
+`func (o *SearchRequest) GetPageOk() (*int32, bool)`
+
+GetPageOk returns a tuple with the Page field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPage
+
+`func (o *SearchRequest) SetPage(v int32)`
+
+SetPage sets Page field to given value.
+
+### HasPage
+
+`func (o *SearchRequest) HasPage() bool`
+
+HasPage returns a boolean if a field has been set.
+
+### GetLimit
+
+`func (o *SearchRequest) GetLimit() int32`
+
+GetLimit returns the Limit field if non-nil, zero value otherwise.
+
+### GetLimitOk
+
+`func (o *SearchRequest) GetLimitOk() (*int32, bool)`
+
+GetLimitOk returns a tuple with the Limit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLimit
+
+`func (o *SearchRequest) SetLimit(v int32)`
+
+SetLimit sets Limit field to given value.
+
+### HasLimit
+
+`func (o *SearchRequest) HasLimit() bool`
+
+HasLimit returns a boolean if a field has been set.
+
+### GetFilters
+
+`func (o *SearchRequest) GetFilters() SearchRequestFilters`
+
+GetFilters returns the Filters field if non-nil, zero value otherwise.
+
+### GetFiltersOk
+
+`func (o *SearchRequest) GetFiltersOk() (*SearchRequestFilters, bool)`
+
+GetFiltersOk returns a tuple with the Filters field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFilters
+
+`func (o *SearchRequest) SetFilters(v SearchRequestFilters)`
+
+SetFilters sets Filters field to given value.
+
+### HasFilters
+
+`func (o *SearchRequest) HasFilters() bool`
+
+HasFilters returns a boolean if a field has been set.
+
+### GetExtract
+
+`func (o *SearchRequest) GetExtract() SearchRequestExtract`
+
+GetExtract returns the Extract field if non-nil, zero value otherwise.
+
+### GetExtractOk
+
+`func (o *SearchRequest) GetExtractOk() (*SearchRequestExtract, bool)`
+
+GetExtractOk returns a tuple with the Extract field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExtract
+
+`func (o *SearchRequest) SetExtract(v SearchRequestExtract)`
+
+SetExtract sets Extract field to given value.
+
+### HasExtract
+
+`func (o *SearchRequest) HasExtract() bool`
+
+HasExtract returns a boolean if a field has been set.
+
+### GetPersonalizations
+
+`func (o *SearchRequest) GetPersonalizations() SearchRequestPersonalizations`
+
+GetPersonalizations returns the Personalizations field if non-nil, zero value otherwise.
+
+### GetPersonalizationsOk
+
+`func (o *SearchRequest) GetPersonalizationsOk() (*SearchRequestPersonalizations, bool)`
+
+GetPersonalizationsOk returns a tuple with the Personalizations field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPersonalizations
+
+`func (o *SearchRequest) SetPersonalizations(v SearchRequestPersonalizations)`
+
+SetPersonalizations sets Personalizations field to given value.
+
+### HasPersonalizations
+
+`func (o *SearchRequest) HasPersonalizations() bool`
+
+HasPersonalizations returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

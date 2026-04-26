@@ -1935,6 +1935,75 @@ components:
             \ results possible."
           type: string
       type: object
+    search_request_filters:
+      description: Filters to apply to search results for more targeted queries.
+      properties:
+        region:
+          description: Filter results to a specific region using an ISO-3166-1 Alpha-2
+            country code. See https://help.kagi.com/api/regions for supported codes.
+          type: string
+        after:
+          description: Filter for results published/updated after this date. Must
+            be in ISO 8601 format (YYYY-MM-DD).
+          type: string
+        before:
+          description: Filter for results published/updated before this date. Must
+            be in ISO 8601 format (YYYY-MM-DD).
+          type: string
+      type: object
+    search_request_extract:
+      description: "Configuration for extracting page content from search results.\
+        \ When provided, the API will fetch and extract the content from the specified\
+        \ number of result pages."
+      properties:
+        count:
+          description: Number of search results to extract content from. Must be between
+            1 and 10.
+          maximum: 10
+          minimum: 1
+          type: integer
+        timeout:
+          description: "Timeout in seconds for extraction of each page. If omitted,\
+            \ uses the default timeout."
+          maximum: 4
+          minimum: 0.5
+          type: number
+      type: object
+    search_request_personalizations_domains_inner:
+      properties:
+        domain:
+          description: "The domain to personalize (e.g., \"example.com\")."
+          type: string
+        bias:
+          description: Bias value to apply to results from this domain.
+          type: number
+      type: object
+    search_request_personalizations_regexes_inner:
+      properties:
+        regex:
+          description: The regex pattern to match.
+          type: string
+        replacement:
+          description: The replacement string to apply when the pattern matches.
+          type: string
+      type: object
+    search_request_personalizations:
+      description: Personalization rules to customize search result ranking. Allows
+        specifying domain biases and regex-based replacements.
+      properties:
+        domains:
+          description: Domain-level personalization rules (maximum 1000 rules). Each
+            rule can boost or lower the ranking of results from specific domains.
+          items:
+            $ref: "#/components/schemas/search_request_personalizations_domains_inner"
+          type: array
+        regexes:
+          description: "Regex-based personalization rules (maximum 1000 rules, max\
+            \ 1000 bytes per pattern)."
+          items:
+            $ref: "#/components/schemas/search_request_personalizations_regexes_inner"
+          type: array
+      type: object
     search_request:
       description: Used to upload the search query
       properties:
@@ -1966,6 +2035,23 @@ components:
           maximum: 4
           minimum: 0.5
           type: number
+        page:
+          description: Page number for paginated results. Must be between 1 and 10.
+          maximum: 10
+          minimum: 1
+          type: integer
+        limit:
+          description: Maximum number of results to return. Must be between 1 and
+            1024.
+          maximum: 1024
+          minimum: 1
+          type: integer
+        filters:
+          $ref: "#/components/schemas/search_request_filters"
+        extract:
+          $ref: "#/components/schemas/search_request_extract"
+        personalizations:
+          $ref: "#/components/schemas/search_request_personalizations"
       required:
       - query
       type: object
