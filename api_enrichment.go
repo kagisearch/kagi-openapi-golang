@@ -122,7 +122,7 @@ func (a *EnrichmentAPIService) EnrichSearchExecute(r ApiEnrichSearchRequest) (*E
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ExampleError
+			var v ErrorEnvelope
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

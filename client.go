@@ -52,6 +52,8 @@ type APIClient struct {
 
 	EnrichmentAPI *EnrichmentAPIService
 
+	ExtractAPI *ExtractAPIService
+
 	FastGPTAPI *FastGPTAPIService
 
 	SearchAPI *SearchAPIService
@@ -78,6 +80,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.EnrichmentAPI = (*EnrichmentAPIService)(&c.common)
+	c.ExtractAPI = (*ExtractAPIService)(&c.common)
 	c.FastGPTAPI = (*FastGPTAPIService)(&c.common)
 	c.SearchAPI = (*SearchAPIService)(&c.common)
 	c.SummarizerAPI = (*SummarizerAPIService)(&c.common)

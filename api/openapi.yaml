@@ -123,6 +123,11 @@ tags:
     The Translate APIs are a collection of endpoints that can be used to translate webpages, documents, and text into different laguages. You can try our amazing [web app here](https://translate.kagi.com/) to get a good idea of what is possible when you don't have to worry about the language of online communication.
   name: Translate
   x-displayName: Translate API
+- description: |
+    Extract contents from web pages. This endpoint accepts a list of URLs
+    and returns the extracted markdown content for each page.
+  name: Extract
+  x-displayName: Extract API
 paths:
   /search:
     post:
@@ -267,23 +272,50 @@ paths:
               schema:
                 $ref: "#/components/schemas/search_200_response"
           description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorEnvelope"
+          description: Invalid request parameters
         "401":
           content:
             application/json:
               examples:
                 default:
-                  summary: Response with example search objects
+                  summary: Response with unauthorized error
                   value:
                     meta:
                       id: 69c3f5c4168f66b860e951c585550f1c
                       node: us-central1
                       ms: 213
+                    data: null
                     error:
-                      code: 2
-                      msg: Unauthorized
+                    - code: "2"
+                      url: https://help.kagi.com/api/errors#unauthorized
+                      message: Unauthorized
+                      location: null
               schema:
-                $ref: "#/components/schemas/exampleError"
+                $ref: "#/components/schemas/errorEnvelope"
           description: Access token is missing or invalid
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorEnvelope"
+          description: Forbidden - IP address not authorized
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorEnvelope"
+          description: Rate limited or usage limit exhausted
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorEnvelope"
+          description: Internal server error
       security:
       - kagi: []
       summary: Perform a search of the web.
@@ -418,17 +450,20 @@ paths:
             application/json:
               examples:
                 default:
-                  summary: Response with example search objects
+                  summary: Response with unauthorized error
                   value:
                     meta:
                       id: 69c3f5c4168f66b860e951c585550f1c
                       node: us-central1
                       ms: 213
+                    data: null
                     error:
-                      code: 2
-                      msg: Unauthorized
+                    - code: "2"
+                      url: https://help.kagi.com/api/errors#unauthorized
+                      message: Unauthorized
+                      location: null
               schema:
-                $ref: "#/components/schemas/exampleError"
+                $ref: "#/components/schemas/errorEnvelope"
           description: Access token is missing or invalid
       security:
       - kagi: []
@@ -566,17 +601,20 @@ paths:
             application/json:
               examples:
                 default:
-                  summary: Response with example search objects
+                  summary: Response with unauthorized error
                   value:
                     meta:
                       id: 69c3f5c4168f66b860e951c585550f1c
                       node: us-central1
                       ms: 213
+                    data: null
                     error:
-                      code: 2
-                      msg: Unauthorized
+                    - code: "2"
+                      url: https://help.kagi.com/api/errors#unauthorized
+                      message: Unauthorized
+                      location: null
               schema:
-                $ref: "#/components/schemas/exampleError"
+                $ref: "#/components/schemas/errorEnvelope"
           description: Access token is missing or invalid
       security:
       - kagi: []
@@ -648,17 +686,20 @@ paths:
             application/json:
               examples:
                 default:
-                  summary: Response with example search objects
+                  summary: Response with unauthorized error
                   value:
                     meta:
                       id: 69c3f5c4168f66b860e951c585550f1c
                       node: us-central1
                       ms: 213
+                    data: null
                     error:
-                      code: 2
-                      msg: Unauthorized
+                    - code: "2"
+                      url: https://help.kagi.com/api/errors#unauthorized
+                      message: Unauthorized
+                      location: null
               schema:
-                $ref: "#/components/schemas/exampleError"
+                $ref: "#/components/schemas/errorEnvelope"
           description: Access token is missing or invalid
       security:
       - kagi: []
@@ -722,17 +763,20 @@ paths:
             application/json:
               examples:
                 default:
-                  summary: Response with example search objects
+                  summary: Response with unauthorized error
                   value:
                     meta:
                       id: 69c3f5c4168f66b860e951c585550f1c
                       node: us-central1
                       ms: 213
+                    data: null
                     error:
-                      code: 2
-                      msg: Unauthorized
+                    - code: "2"
+                      url: https://help.kagi.com/api/errors#unauthorized
+                      message: Unauthorized
+                      location: null
               schema:
-                $ref: "#/components/schemas/exampleError"
+                $ref: "#/components/schemas/errorEnvelope"
           description: Access token is missing or invalid
       security:
       - kagi: []
@@ -741,6 +785,98 @@ paths:
       - FastGPT
     summary: FastGPT is a Kagi service using powerful LLMs to answer user queries
       running a full search engine underneath.
+  /extract:
+    post:
+      description: |
+        Extracts markdown content from up to 10 HTTP(s) URLs. Each URL is processed
+        and the extracted content is returned in the response.
+      operationId: extractContent
+      requestBody:
+        content:
+          application/json:
+            examples:
+              basicExtract:
+                description: Request to extract content from up to 10 web pages
+                summary: Extract from multiple URLs
+                value:
+                  pages:
+                  - url: https://example.com/article1
+                  - url: https://example.com/article2
+                  timeout: 30
+                  format: json
+            schema:
+              $ref: "#/components/schemas/extractRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                default:
+                  summary: Successful extraction response
+                  value:
+                    meta:
+                      trace: abc123def456
+                      ms: 1250
+                      node: us-east-1
+                    data:
+                    - url: https://example.com/article
+                      markdown: |-
+                        # Article Title
+
+                        This is the extracted content...
+              schema:
+                $ref: "#/components/schemas/extractResponse"
+          description: Successful extraction
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorEnvelope"
+          description: Invalid request parameters
+        "401":
+          content:
+            application/json:
+              examples:
+                default:
+                  summary: Response with unauthorized error
+                  value:
+                    meta:
+                      id: 69c3f5c4168f66b860e951c585550f1c
+                      node: us-central1
+                      ms: 213
+                    data: null
+                    error:
+                    - code: "2"
+                      url: https://help.kagi.com/api/errors#unauthorized
+                      message: Unauthorized
+                      location: null
+              schema:
+                $ref: "#/components/schemas/errorEnvelope"
+          description: Access token is missing or invalid
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorEnvelope"
+          description: Forbidden - IP address not authorized
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorEnvelope"
+          description: Rate limited or usage limit exhausted
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorEnvelope"
+          description: Internal server error
+      security:
+      - kagi: []
+      summary: Extract page content as markdown from URLs
+      tags:
+      - Extract
   /alternative-translations:
     post:
       description: "Provides alternative translation options for a given text with\
@@ -1246,17 +1382,20 @@ paths:
             application/json:
               examples:
                 default:
-                  summary: Response with example search objects
+                  summary: Response with unauthorized error
                   value:
                     meta:
                       id: 69c3f5c4168f66b860e951c585550f1c
                       node: us-central1
                       ms: 213
+                    data: null
                     error:
-                      code: 2
-                      msg: Unauthorized
+                    - code: "2"
+                      url: https://help.kagi.com/api/errors#unauthorized
+                      message: Unauthorized
+                      location: null
               schema:
-                $ref: "#/components/schemas/exampleError"
+                $ref: "#/components/schemas/errorEnvelope"
           description: Access token is missing or invalid
       security:
       - kagi-translate: []
@@ -1701,17 +1840,20 @@ components:
         application/json:
           examples:
             default:
-              summary: Response with example search objects
+              summary: Response with unauthorized error
               value:
                 meta:
                   id: 69c3f5c4168f66b860e951c585550f1c
                   node: us-central1
                   ms: 213
+                data: null
                 error:
-                  code: 2
-                  msg: Unauthorized
+                - code: "2"
+                  url: https://help.kagi.com/api/errors#unauthorized
+                  message: Unauthorized
+                  location: null
           schema:
-            $ref: "#/components/schemas/exampleError"
+            $ref: "#/components/schemas/errorEnvelope"
       description: Access token is missing or invalid
   schemas:
     meta:
@@ -1785,24 +1927,71 @@ components:
       - title
       - url
       type: object
-    exampleError:
-      description: I need an example error to appease the linter. Please accept my
-        offering
+    errorDetail:
+      description: API error response for Extract operations
       example:
+        code: extract.invalid_url
+        location: "pages[0].url"
+        message: URL must be a valid HTTPS URL
+        url: https://help.kagi.com/api/errors#extract.invalid_url
+      properties:
+        code:
+          description: Namespaced error code
+          example: extract.invalid_url
+          type: string
+        url:
+          description: URL to error documentation
+          example: https://help.kagi.com/api/errors#extract.invalid_url
+          format: uri
+          type: string
+        message:
+          description: Human-readable error message
+          example: URL must be a valid HTTPS URL
+          nullable: true
+          type: string
+        location:
+          description: Field location where the error occurred
+          example: "pages[0].url"
+          nullable: true
+          type: string
+      required:
+      - code
+      - url
+      type: object
+    errorEnvelope:
+      description: API error response envelope containing metadata and an array of
+        error details
+      example:
+        data:
+        - ""
+        - ""
         meta:
           node: node
           trace: trace
           ms: 0
           id: id
         error:
-          msg: msg
-          ref: ref
-          code: 6
+        - code: extract.invalid_url
+          location: "pages[0].url"
+          message: URL must be a valid HTTPS URL
+          url: https://help.kagi.com/api/errors#extract.invalid_url
+        - code: extract.invalid_url
+          location: "pages[0].url"
+          message: URL must be a valid HTTPS URL
+          url: https://help.kagi.com/api/errors#extract.invalid_url
       properties:
         meta:
           $ref: "#/components/schemas/meta"
+        data:
+          description: Empty data array when error occurs
+          items: {}
+          nullable: true
+          type: array
         error:
-          $ref: "#/components/schemas/exampleError_error"
+          description: Array of error detail objects describing what went wrong
+          items:
+            $ref: "#/components/schemas/errorDetail"
+          type: array
       required:
       - error
       - meta
@@ -1876,6 +2065,117 @@ components:
           $ref: "#/components/schemas/searchObject_thumbnail"
         image:
           $ref: "#/components/schemas/searchObject_image"
+      type: object
+    pageInput:
+      description: A single page to extract content from
+      properties:
+        url:
+          description: |
+            The HTTPS URL of the page to extract content from.
+            Must use HTTPS scheme with a valid host.
+          example: https://example.com/article
+          format: uri
+          type: string
+      required:
+      - url
+      type: object
+    extractRequest:
+      description: Request body for content extraction
+      properties:
+        pages:
+          description: |
+            Array of pages to extract content from. Must contain 1-10 URLs.
+            Each URL must be a valid HTTPS URL.
+          items:
+            $ref: "#/components/schemas/pageInput"
+          maxItems: 10
+          minItems: 1
+          type: array
+        timeout:
+          description: Optional timeout in seconds for the extraction operation
+          example: 30
+          format: float
+          type: number
+        format:
+          default: json
+          description: Response format
+          enum:
+          - json
+          - markdown
+          example: json
+          type: string
+      required:
+      - pages
+      type: object
+    pageOutput:
+      description: Extracted content for a single page
+      example:
+        markdown: |-
+          # Article Title
+
+          This is the extracted content...
+        url: https://example.com/article
+      properties:
+        url:
+          description: The URL of the extracted page
+          example: https://example.com/article
+          format: uri
+          type: string
+        markdown:
+          description: Extracted markdown content of the page
+          example: |-
+            # Article Title
+
+            This is the extracted content...
+          nullable: true
+          type: string
+      required:
+      - url
+      type: object
+    extractResponse:
+      description: Response containing extracted content
+      example:
+        data:
+        - markdown: |-
+            # Article Title
+
+            This is the extracted content...
+          url: https://example.com/article
+        - markdown: |-
+            # Article Title
+
+            This is the extracted content...
+          url: https://example.com/article
+        meta:
+          node: node
+          trace: trace
+          ms: 0
+          id: id
+        errors:
+        - code: extract.invalid_url
+          location: "pages[0].url"
+          message: URL must be a valid HTTPS URL
+          url: https://help.kagi.com/api/errors#extract.invalid_url
+        - code: extract.invalid_url
+          location: "pages[0].url"
+          message: URL must be a valid HTTPS URL
+          url: https://help.kagi.com/api/errors#extract.invalid_url
+      properties:
+        meta:
+          $ref: "#/components/schemas/meta"
+        data:
+          description: Array of extracted page content
+          items:
+            $ref: "#/components/schemas/pageOutput"
+          type: array
+        errors:
+          description: Optional array of errors that occurred during extraction
+          items:
+            $ref: "#/components/schemas/errorDetail"
+          type: array
+      required:
+      - data
+      - meta
       type: object
     search_request_lens:
       description: "An inline description of a lens to apply to the search. Options\
@@ -4174,22 +4474,6 @@ components:
           type: integer
       required:
       - url
-      type: object
-    exampleError_error:
-      example:
-        msg: msg
-        ref: ref
-        code: 6
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        ref:
-          type: string
-      required:
-      - code
-      - msg
       type: object
     summary_data:
       description: The actual summary response.
