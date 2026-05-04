@@ -24,11 +24,11 @@ var _ MappedNullable = &SearchResult{}
 type SearchResult struct {
 	// The location of the result. This is the direct URL to the resource that matches the query
 	Url string `json:"url"`
-	// This is the title of the resource. For HTML resources, it is the title in the header of the document. For Video resources, it is the name of the video that would be displayed on the video site
+	// This is the title of the resource. For HTML documents, it reflects `<title>`. For videos, it is the name that would be displayed on the video site.
 	Title string `json:"title"`
 	// A short summary of the contents of the resource
 	Snippet *string `json:"snippet,omitempty"`
-	// A date for when the resource was last updated or created.
+	// The date when the resource was created or last updated.
 	Time *string `json:"time,omitempty"`
 	Image *SearchResultImage `json:"image,omitempty"`
 	// Holds arbitrary result metadata

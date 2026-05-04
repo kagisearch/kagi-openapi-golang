@@ -131,7 +131,7 @@ Class | Method | HTTP request | Description
 *EnrichmentAPI* | [**EnrichSearch**](docs/EnrichmentAPI.md#enrichsearch) | **Get** /enrich/{type} | Get enriched search results
 *ExtractAPI* | [**ExtractContent**](docs/ExtractAPI.md#extractcontent) | **Post** /extract | Extract page content as markdown from URLs
 *FastGPTAPI* | [**FastGPT**](docs/FastGPTAPI.md#fastgpt) | **Post** /fastgpt | Answer a query.
-*SearchAPI* | [**Search**](docs/SearchAPI.md#search) | **Post** /search | Perform a search of the web.
+*SearchAPI* | [**Search**](docs/SearchAPI.md#search) | **Post** /search | Perform a web search
 *SummarizerAPI* | [**SummarizeText**](docs/SummarizerAPI.md#summarizetext) | **Post** /summarize | Upload text to summarize.
 *SummarizerAPI* | [**SummarizeURL**](docs/SummarizerAPI.md#summarizeurl) | **Get** /summarize | Get a summary for a URL
 *TranslateAPI* | [**Translate**](docs/TranslateAPI.md#translate) | **Post** /api/translate | Text Translation

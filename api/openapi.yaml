@@ -158,7 +158,6 @@ paths:
                   workflow: images
             schema:
               $ref: "#/components/schemas/search_request"
-        description: Contains the search query to run
         required: true
       responses:
         "200":
@@ -318,7 +317,7 @@ paths:
           description: Internal server error
       security:
       - kagi: []
-      summary: Perform a search of the web.
+      summary: Perform a web search
       tags:
       - Search
   /summarize:
@@ -1902,9 +1901,9 @@ components:
           example: https://en.wikipedia.org/wiki/Steve_Jobs
           type: string
         title:
-          description: "This is the title of the resource. For HTML resources, it\
-            \ is the title in the header of the document. For Video resources, it\
-            \ is the name of the video that would be displayed on the video site"
+          description: "This is the title of the resource. For HTML documents, it\
+            \ reflects `<title>`. For videos, it is the name that would be displayed\
+            \ on the video site."
           example: Steve Jobs - Wikipedia
           type: string
         snippet:
@@ -1914,7 +1913,7 @@ components:
             \ the ..."
           type: string
         time:
-          description: A date for when the resource was last updated or created.
+          description: The date when the resource was created or last updated.
           example: 2024-11-29T03:54:26Z
           type: string
         image:
@@ -2178,33 +2177,31 @@ components:
       - meta
       type: object
     search_request_lens:
-      description: "An inline description of a lens to apply to the search. Options\
-        \ supplied by the lens take pecedent over those supplied by the user in their\
-        \ search terms (e.g., `site:` operators), allowing you to restrict the scope\
-        \ of the search to return more relevant results in specific applications."
+      description: "Inline description of a lens to apply to the search. Options supplied\
+        \ by the lens take precedence over those supplied by the user in their search\
+        \ terms (e.g., `site:` operators), allowing you to restrict the scope of the\
+        \ search to return more relevant results in specific applications."
       properties:
         sites_included:
-          description: A list of domains to restrict the search to.
+          description: Search only these domains.
           items:
             description: domains
             type: string
           type: array
         sites_excluded:
-          description: A list of domains to restrict the search to.
+          description: Exclude these domains from the search.
           items:
             description: domains
             type: string
           type: array
         keywords_included:
-          description: "A list of keywords to filter results on, such that every result\
-            \ *must* contain these terms."
+          description: Return only results containing these keywords.
           items:
             description: keywords
             type: string
           type: array
         keywords_excluded:
-          description: "A list of keywords to filter results on, such that any result\
-            \ containing these terms is removed."
+          description: Exclude results containing these keywords.
           items:
             description: keywords
             type: string
@@ -2214,11 +2211,13 @@ components:
           type: string
         time_after:
           description: Filters for web pages that have been updated or published *after*
-            the given date (`YYYY-MM-DD`).
+            the given date.
+          format: date
           type: string
         time_before:
           description: Filters for web pages that have been updated or published *before*
-            the given date (`YYYY-MM-DD`).
+            the given date.
+          format: date
           type: string
         time_relative:
           description: "Filters for web pages that have been updated or published\
@@ -2239,16 +2238,16 @@ components:
       description: Filters to apply to search results for more targeted queries.
       properties:
         region:
-          description: Filter results to a specific region using an ISO-3166-1 Alpha-2
+          description: Filter results to a specific region using an ISO 3166-1 Alpha-2
             country code. See https://help.kagi.com/api/regions for supported codes.
           type: string
         after:
-          description: Filter for results published/updated after this date. Must
-            be in ISO 8601 format (YYYY-MM-DD).
+          description: Filter for results published or updated after this date.
+          format: date
           type: string
         before:
-          description: Filter for results published/updated before this date. Must
-            be in ISO 8601 format (YYYY-MM-DD).
+          description: Filter for results published or updated before this date.
+          format: date
           type: string
       type: object
     search_request_extract:
@@ -2308,11 +2307,11 @@ components:
       description: Used to upload the search query
       properties:
         query:
-          description: The search query to perform.
+          description: Search query to run.
           type: string
         workflow:
           default: search
-          description: Can be used to filter result output to a single category.
+          description: Type of results to return.
           enum:
           - search
           - images
@@ -2321,9 +2320,10 @@ components:
           - podcasts
           type: string
         lens_id:
-          description: "A lens ID, as shown on https://kagi.com/settings/lenses when\
-            \ a lens is set to be shareable. Can be just the ID portion of the URL\
-            \ (`https://kagi.com/lenses/ID`), or the full URL."
+          description: Lens to apply to the search. Can be a built-in lens's identifier
+            or a lens ID as shown on https://kagi.com/settings/lenses when a lens
+            is set to be shareable. Can be just the ID portion of the URL (`https://kagi.com/lenses/ID`)
+            or the full URL.
           type: string
         lens:
           $ref: "#/components/schemas/search_request_lens"
@@ -2357,7 +2357,7 @@ components:
       type: object
     search_200_response_data:
       description: "Holds all the search results for the query specified. As results\
-        \ have different types and sources, they are spearated into different fields\
+        \ have different types and sources, they are separated into different fields\
         \ within this object. For example image results are stored under `data.image`\
         \ while news results are stored under `data.news`. All results will have the\
         \ same main structure, but additional data might be stored under the `data.{name}[].props`\
@@ -2816,7 +2816,7 @@ components:
             key: ""
       properties:
         search:
-          description: Contains all search results for html pages or wedbsites.
+          description: Contains all search results for html pages or websites.
           items:
             $ref: "#/components/schemas/searchResult"
           type: array
@@ -2836,7 +2836,7 @@ components:
             $ref: "#/components/schemas/searchResult"
           type: array
         podcast_creator:
-          description: Contains all search results for creators of podcasta.
+          description: Contains all search results for creators of podcasts.
           items:
             $ref: "#/components/schemas/searchResult"
           type: array
@@ -2860,13 +2860,13 @@ components:
           type: array
         interesting_news:
           description: Contains news results from publishers collected and stored
-            in Kagis' news index.
+            in Kagi's news index.
           items:
             $ref: "#/components/schemas/searchResult"
           type: array
         interesting_finds:
           description: Contains small web results from publishers collected and stored
-            in Kagis' small web index.
+            in Kagi's small web index.
           items:
             $ref: "#/components/schemas/searchResult"
           type: array
@@ -2890,7 +2890,7 @@ components:
           type: array
         public_records:
           description: "Contains all search results for public records, such as government\
-            \ documents, or public court records."
+            \ documents or public court records."
           items:
             $ref: "#/components/schemas/searchResult"
           type: array
@@ -4452,8 +4452,8 @@ components:
           type: string
       type: object
     searchResult_image:
-      description: "An image that goes with the main resource. This could be a thumbnail\
-        \ of a video resource, Or a main image on an html resource"
+      description: An image that goes with the main resource. It could be a video's
+        thumbnail or an HTML document's main image.
       example:
         width: 310
         url: https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg/330px-Steve_Jobs_Headshot_2010-CROP_%28cropp    ed_2%29.jpg

@@ -18,21 +18,21 @@ import (
 // checks if the SearchRequestLens type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SearchRequestLens{}
 
-// SearchRequestLens An inline description of a lens to apply to the search. Options supplied by the lens take pecedent over those supplied by the user in their search terms (e.g., `site:` operators), allowing you to restrict the scope of the search to return more relevant results in specific applications.
+// SearchRequestLens Inline description of a lens to apply to the search. Options supplied by the lens take precedence over those supplied by the user in their search terms (e.g., `site:` operators), allowing you to restrict the scope of the search to return more relevant results in specific applications.
 type SearchRequestLens struct {
-	// A list of domains to restrict the search to.
+	// Search only these domains.
 	SitesIncluded []string `json:"sites_included,omitempty"`
-	// A list of domains to restrict the search to.
+	// Exclude these domains from the search.
 	SitesExcluded []string `json:"sites_excluded,omitempty"`
-	// A list of keywords to filter results on, such that every result *must* contain these terms.
+	// Return only results containing these keywords.
 	KeywordsIncluded []string `json:"keywords_included,omitempty"`
-	// A list of keywords to filter results on, such that any result containing these terms is removed.
+	// Exclude results containing these keywords.
 	KeywordsExcluded []string `json:"keywords_excluded,omitempty"`
 	// A specific file type to search for. (e.g., `pdf`)
 	FileType *string `json:"file_type,omitempty"`
-	// Filters for web pages that have been updated or published *after* the given date (`YYYY-MM-DD`).
+	// Filters for web pages that have been updated or published *after* the given date.
 	TimeAfter *string `json:"time_after,omitempty"`
-	// Filters for web pages that have been updated or published *before* the given date (`YYYY-MM-DD`).
+	// Filters for web pages that have been updated or published *before* the given date.
 	TimeBefore *string `json:"time_before,omitempty"`
 	// Filters for web pages that have been updated or published in the given interval, relative to today's date.
 	TimeRelative *string `json:"time_relative,omitempty"`

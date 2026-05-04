@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Query** | **string** | The search query to perform. | 
-**Workflow** | Pointer to **string** | Can be used to filter result output to a single category. | [optional] [default to "search"]
-**LensId** | Pointer to **string** | A lens ID, as shown on https://kagi.com/settings/lenses when a lens is set to be shareable. Can be just the ID portion of the URL (&#x60;https://kagi.com/lenses/ID&#x60;), or the full URL. | [optional] 
+**Query** | **string** | Search query to run. | 
+**Workflow** | Pointer to **string** | Type of results to return. | [optional] [default to "search"]
+**LensId** | Pointer to **string** | Lens to apply to the search. Can be a built-in lens&#39;s identifier or a lens ID as shown on https://kagi.com/settings/lenses when a lens is set to be shareable. Can be just the ID portion of the URL (&#x60;https://kagi.com/lenses/ID&#x60;) or the full URL. | [optional] 
 **Lens** | Pointer to [**SearchRequestLens**](SearchRequestLens.md) |  | [optional] 
 **Timeout** | Pointer to **float32** | Number of seconds to allow for collecting search results. Lower values will return results more quickly, but may be lower quality or inconsistent between calls. If omitted, will use the latest recommended value by Kagi. | [optional] 
 **Page** | Pointer to **int32** | Page number for paginated results. Must be between 1 and 10. | [optional] 

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SitesIncluded** | Pointer to **[]string** | A list of domains to restrict the search to. | [optional] 
-**SitesExcluded** | Pointer to **[]string** | A list of domains to restrict the search to. | [optional] 
-**KeywordsIncluded** | Pointer to **[]string** | A list of keywords to filter results on, such that every result *must* contain these terms. | [optional] 
-**KeywordsExcluded** | Pointer to **[]string** | A list of keywords to filter results on, such that any result containing these terms is removed. | [optional] 
+**SitesIncluded** | Pointer to **[]string** | Search only these domains. | [optional] 
+**SitesExcluded** | Pointer to **[]string** | Exclude these domains from the search. | [optional] 
+**KeywordsIncluded** | Pointer to **[]string** | Return only results containing these keywords. | [optional] 
+**KeywordsExcluded** | Pointer to **[]string** | Exclude results containing these keywords. | [optional] 
 **FileType** | Pointer to **string** | A specific file type to search for. (e.g., &#x60;pdf&#x60;) | [optional] 
-**TimeAfter** | Pointer to **string** | Filters for web pages that have been updated or published *after* the given date (&#x60;YYYY-MM-DD&#x60;). | [optional] 
-**TimeBefore** | Pointer to **string** | Filters for web pages that have been updated or published *before* the given date (&#x60;YYYY-MM-DD&#x60;). | [optional] 
+**TimeAfter** | Pointer to **string** | Filters for web pages that have been updated or published *after* the given date. | [optional] 
+**TimeBefore** | Pointer to **string** | Filters for web pages that have been updated or published *before* the given date. | [optional] 
 **TimeRelative** | Pointer to **string** | Filters for web pages that have been updated or published in the given interval, relative to today&#39;s date. | [optional] 
 **SearchRegion** | Pointer to **string** | Requests results localized to a specific region. Can be any valid [ISO-3166-1 Alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements), or the special value &#x60;no_region&#x60;, that will try to get the most general results possible. | [optional] 
 

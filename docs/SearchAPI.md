@@ -4,7 +4,7 @@ All URIs are relative to *https://kagi.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Search**](SearchAPI.md#Search) | **Post** /search | Perform a search of the web.
+[**Search**](SearchAPI.md#Search) | **Post** /search | Perform a web search
 
 
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 > Search200Response Search(ctx).SearchRequest(searchRequest).Execute()
 
-Perform a search of the web.
+Perform a web search
 
 ### Example
 
@@ -27,7 +27,7 @@ import (
 )
 
 func main() {
-	searchRequest := *openapiclient.NewSearchRequest("Query_example") // SearchRequest | Contains the search query to run
+	searchRequest := *openapiclient.NewSearchRequest("Query_example") // SearchRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -52,7 +52,7 @@ Other parameters are passed through a pointer to a apiSearchRequest struct via t
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **searchRequest** | [**SearchRequest**](SearchRequest.md) | Contains the search query to run | 
+ **searchRequest** | [**SearchRequest**](SearchRequest.md) |  | 
 
 ### Return type
 

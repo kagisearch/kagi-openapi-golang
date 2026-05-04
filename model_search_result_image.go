@@ -20,7 +20,7 @@ import (
 // checks if the SearchResultImage type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SearchResultImage{}
 
-// SearchResultImage An image that goes with the main resource. This could be a thumbnail of a video resource, Or a main image on an html resource
+// SearchResultImage An image that goes with the main resource. It could be a video's thumbnail or an HTML document's main image.
 type SearchResultImage struct {
 	// This is a URL that links directly to the image that goes with the resources.
 	Url string `json:"url"`

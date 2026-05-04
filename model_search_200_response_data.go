@@ -18,9 +18,9 @@ import (
 // checks if the Search200ResponseData type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Search200ResponseData{}
 
-// Search200ResponseData Holds all the search results for the query specified. As results have different types and sources, they are spearated into different fields within this object. For example image results are stored under `data.image` while news results are stored under `data.news`. All results will have the same main structure, but additional data might be stored under the `data.{name}[].props` path. Please look at each different type of result for more information about this.
+// Search200ResponseData Holds all the search results for the query specified. As results have different types and sources, they are separated into different fields within this object. For example image results are stored under `data.image` while news results are stored under `data.news`. All results will have the same main structure, but additional data might be stored under the `data.{name}[].props` path. Please look at each different type of result for more information about this.
 type Search200ResponseData struct {
-	// Contains all search results for html pages or wedbsites.
+	// Contains all search results for html pages or websites.
 	Search []SearchResult `json:"search,omitempty"`
 	// Contains all search results for images.
 	Image []SearchResult `json:"image,omitempty"`
@@ -28,7 +28,7 @@ type Search200ResponseData struct {
 	Video []SearchResult `json:"video,omitempty"`
 	// Contains all search results for podcasts.
 	Podcast []SearchResult `json:"podcast,omitempty"`
-	// Contains all search results for creators of podcasta.
+	// Contains all search results for creators of podcasts.
 	PodcastCreator []SearchResult `json:"podcast_creator,omitempty"`
 	// Contains all search results for news articles.
 	News []SearchResult `json:"news,omitempty"`
@@ -36,9 +36,9 @@ type Search200ResponseData struct {
 	AdjacentQuestion []SearchResult `json:"adjacent_question,omitempty"`
 	// If the search query was a math equation, or unit conversions, things that can be answered quickly, the result will be in here.
 	DirectAnswer []SearchResult `json:"direct_answer,omitempty"`
-	// Contains news results from publishers collected and stored in Kagis' news index.
+	// Contains news results from publishers collected and stored in Kagi's news index.
 	InterestingNews []SearchResult `json:"interesting_news,omitempty"`
-	// Contains small web results from publishers collected and stored in Kagis' small web index.
+	// Contains small web results from publishers collected and stored in Kagi's small web index.
 	InterestingFinds []SearchResult `json:"interesting_finds,omitempty"`
 	// Contains detailed summary and tabulated information about a person, place, or thing.
 	Infobox []SearchResult `json:"infobox,omitempty"`
@@ -46,7 +46,7 @@ type Search200ResponseData struct {
 	Code []SearchResult `json:"code,omitempty"`
 	// If the search query was a package tracking number, the correct package tracking website should be present in this collection.
 	PackageTracking []SearchResult `json:"package_tracking,omitempty"`
-	// Contains all search results for public records, such as government documents, or public court records.
+	// Contains all search results for public records, such as government documents or public court records.
 	PublicRecords []SearchResult `json:"public_records,omitempty"`
 	// Contains all search results for the current weather.
 	Weather []SearchResult `json:"weather,omitempty"`

@@ -29,7 +29,6 @@ type ApiSearchRequest struct {
 	searchRequest *SearchRequest
 }
 
-// Contains the search query to run
 func (r ApiSearchRequest) SearchRequest(searchRequest SearchRequest) ApiSearchRequest {
 	r.searchRequest = &searchRequest
 	return r
@@ -40,7 +39,7 @@ func (r ApiSearchRequest) Execute() (*Search200Response, *http.Response, error) 
 }
 
 /*
-Search Perform a search of the web.
+Search Perform a web search
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSearchRequest
