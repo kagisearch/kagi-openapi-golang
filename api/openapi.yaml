@@ -830,6 +830,10 @@ paths:
                         This is the extracted content...
               schema:
                 $ref: "#/components/schemas/extractResponse"
+            text/markdown:
+              schema:
+                description: Plain markdown extracted content without JSON wrapper
+                type: string
           description: Successful extraction
         "400":
           content:
