@@ -26,6 +26,8 @@ type SearchRequest struct {
 	Query string `json:"query"`
 	// Type of results to return.
 	Workflow *string `json:"workflow,omitempty"`
+	// Format to serialize the API response as.
+	Format *string `json:"format,omitempty"`
 	// Lens to apply to the search. Can be a built-in lens's identifier or a lens ID as shown on https://kagi.com/settings/lenses when a lens is set to be shareable. Can be just the ID portion of the URL (`https://kagi.com/lenses/ID`) or the full URL.
 	LensId *string `json:"lens_id,omitempty"`
 	Lens *SearchRequestLens `json:"lens,omitempty"`
@@ -51,6 +53,8 @@ func NewSearchRequest(query string) *SearchRequest {
 	this.Query = query
 	var workflow string = "search"
 	this.Workflow = &workflow
+	var format string = "json"
+	this.Format = &format
 	return &this
 }
 
@@ -61,6 +65,8 @@ func NewSearchRequestWithDefaults() *SearchRequest {
 	this := SearchRequest{}
 	var workflow string = "search"
 	this.Workflow = &workflow
+	var format string = "json"
+	this.Format = &format
 	return &this
 }
 
@@ -118,6 +124,38 @@ func (o *SearchRequest) HasWorkflow() bool {
 // SetWorkflow gets a reference to the given string and assigns it to the Workflow field.
 func (o *SearchRequest) SetWorkflow(v string) {
 	o.Workflow = &v
+}
+
+// GetFormat returns the Format field value if set, zero value otherwise.
+func (o *SearchRequest) GetFormat() string {
+	if o == nil || IsNil(o.Format) {
+		var ret string
+		return ret
+	}
+	return *o.Format
+}
+
+// GetFormatOk returns a tuple with the Format field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SearchRequest) GetFormatOk() (*string, bool) {
+	if o == nil || IsNil(o.Format) {
+		return nil, false
+	}
+	return o.Format, true
+}
+
+// HasFormat returns a boolean if a field has been set.
+func (o *SearchRequest) HasFormat() bool {
+	if o != nil && !IsNil(o.Format) {
+		return true
+	}
+
+	return false
+}
+
+// SetFormat gets a reference to the given string and assigns it to the Format field.
+func (o *SearchRequest) SetFormat(v string) {
+	o.Format = &v
 }
 
 // GetLensId returns the LensId field value if set, zero value otherwise.
@@ -389,6 +427,9 @@ func (o SearchRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["query"] = o.Query
 	if !IsNil(o.Workflow) {
 		toSerialize["workflow"] = o.Workflow
+	}
+	if !IsNil(o.Format) {
+		toSerialize["format"] = o.Format
 	}
 	if !IsNil(o.LensId) {
 		toSerialize["lens_id"] = o.LensId

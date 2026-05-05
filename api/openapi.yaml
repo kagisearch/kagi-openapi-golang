@@ -270,6 +270,10 @@ paths:
                           language_probability: 0.9541819095611572
               schema:
                 $ref: "#/components/schemas/search_200_response"
+            text/markdown:
+              schema:
+                description: Plain markdown search results without JSON wrapper
+                type: string
           description: Success
         "400":
           content:
@@ -2318,6 +2322,13 @@ components:
           - videos
           - news
           - podcasts
+          type: string
+        format:
+          default: json
+          description: Format to serialize the API response as.
+          enum:
+          - json
+          - markdown
           type: string
         lens_id:
           description: Lens to apply to the search. Can be a built-in lens's identifier
