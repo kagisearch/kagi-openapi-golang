@@ -125,21 +125,12 @@ All URIs are relative to *https://kagi.com/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*EnrichmentAPI* | [**EnrichSearch**](docs/EnrichmentAPI.md#enrichsearch) | **Get** /enrich/{type} | Get enriched search results
 *ExtractAPI* | [**ExtractContent**](docs/ExtractAPI.md#extractcontent) | **Post** /extract | Extract page content as markdown from URLs
 *SearchAPI* | [**Search**](docs/SearchAPI.md#search) | **Post** /search | Perform a web search
-*TranslateAPI* | [**Translate**](docs/TranslateAPI.md#translate) | **Post** /api/translate | Text Translation
-*TranslateAPI* | [**TranslateAlternatives**](docs/TranslateAPI.md#translatealternatives) | **Post** /alternative-translations | Alternative Translations
-*TranslateAPI* | [**TranslateDetect**](docs/TranslateAPI.md#translatedetect) | **Post** /api/detect | Language Detection
-*TranslateAPI* | [**TranslateDictionary**](docs/TranslateAPI.md#translatedictionary) | **Post** /api/dictionary | Dictionary
-*TranslateAPI* | [**TranslateListLanguages**](docs/TranslateAPI.md#translatelistlanguages) | **Get** /api/list-languages | List Supported Languages
-*TranslateAPI* | [**TranslateRomanize**](docs/TranslateAPI.md#translateromanize) | **Get** /api/romanize | Text Romanization
-*TranslateAPI* | [**TranslateWordInsights**](docs/TranslateAPI.md#translatewordinsights) | **Post** /api/word-insights | Word Insights
 
 
 ## Documentation For Models
 
- - [EnrichSearch200Response](docs/EnrichSearch200Response.md)
  - [ErrorDetail](docs/ErrorDetail.md)
  - [ErrorEnvelope](docs/ErrorEnvelope.md)
  - [ExtractRequest](docs/ExtractRequest.md)
@@ -149,9 +140,6 @@ Class | Method | HTTP request | Description
  - [PageOutput](docs/PageOutput.md)
  - [Search200Response](docs/Search200Response.md)
  - [Search200ResponseData](docs/Search200ResponseData.md)
- - [SearchObject](docs/SearchObject.md)
- - [SearchObjectImage](docs/SearchObjectImage.md)
- - [SearchObjectThumbnail](docs/SearchObjectThumbnail.md)
  - [SearchRequest](docs/SearchRequest.md)
  - [SearchRequestExtract](docs/SearchRequestExtract.md)
  - [SearchRequestFilters](docs/SearchRequestFilters.md)
@@ -161,40 +149,6 @@ Class | Method | HTTP request | Description
  - [SearchRequestPersonalizationsRegexesInner](docs/SearchRequestPersonalizationsRegexesInner.md)
  - [SearchResult](docs/SearchResult.md)
  - [SearchResultImage](docs/SearchResultImage.md)
- - [Translate200Response](docs/Translate200Response.md)
- - [Translate200ResponseOneOf](docs/Translate200ResponseOneOf.md)
- - [Translate200ResponseOneOf1](docs/Translate200ResponseOneOf1.md)
- - [Translate200ResponseOneOfDefinition](docs/Translate200ResponseOneOfDefinition.md)
- - [Translate200ResponseOneOfDefinitionDefinitionsInner](docs/Translate200ResponseOneOfDefinitionDefinitionsInner.md)
- - [Translate200ResponseOneOfDefinitionDefinitionsInnerMeaningsInner](docs/Translate200ResponseOneOfDefinitionDefinitionsInnerMeaningsInner.md)
- - [Translate200ResponseOneOfDetectedLanguage](docs/Translate200ResponseOneOfDetectedLanguage.md)
- - [Translate400Response](docs/Translate400Response.md)
- - [Translate500Response](docs/Translate500Response.md)
- - [TranslateAlternatives200Response](docs/TranslateAlternatives200Response.md)
- - [TranslateAlternatives200ResponseElementsInner](docs/TranslateAlternatives200ResponseElementsInner.md)
- - [TranslateAlternatives401Response](docs/TranslateAlternatives401Response.md)
- - [TranslateAlternatives402Response](docs/TranslateAlternatives402Response.md)
- - [TranslateAlternatives500Response](docs/TranslateAlternatives500Response.md)
- - [TranslateDetect200Response](docs/TranslateDetect200Response.md)
- - [TranslateDetect400Response](docs/TranslateDetect400Response.md)
- - [TranslateDetectRequest](docs/TranslateDetectRequest.md)
- - [TranslateDictionary200Response](docs/TranslateDictionary200Response.md)
- - [TranslateDictionary200ResponseDefinition](docs/TranslateDictionary200ResponseDefinition.md)
- - [TranslateDictionary200ResponseDefinitionPrimaryMeaning](docs/TranslateDictionary200ResponseDefinitionPrimaryMeaning.md)
- - [TranslateDictionary200ResponseDefinitionSecondaryMeaningsInner](docs/TranslateDictionary200ResponseDefinitionSecondaryMeaningsInner.md)
- - [TranslateDictionary200ResponseLanguage](docs/TranslateDictionary200ResponseLanguage.md)
- - [TranslateDictionary400Response](docs/TranslateDictionary400Response.md)
- - [TranslateDictionary500Response](docs/TranslateDictionary500Response.md)
- - [TranslateDictionaryRequest](docs/TranslateDictionaryRequest.md)
- - [TranslateListLanguages200ResponseInner](docs/TranslateListLanguages200ResponseInner.md)
- - [TranslateRequest](docs/TranslateRequest.md)
- - [TranslateRequestText](docs/TranslateRequestText.md)
- - [TranslateRomanize200Response](docs/TranslateRomanize200Response.md)
- - [TranslateWordInsights200Response](docs/TranslateWordInsights200Response.md)
- - [TranslateWordInsights200ResponseInsightsInner](docs/TranslateWordInsights200ResponseInsightsInner.md)
- - [TranslateWordInsights200ResponseInsightsInnerVariationsInner](docs/TranslateWordInsights200ResponseInsightsInnerVariationsInner.md)
- - [TranslateWordInsights400Response](docs/TranslateWordInsights400Response.md)
- - [TranslateWordInsights500Response](docs/TranslateWordInsights500Response.md)
 
 
 ## Documentation For Authorization
@@ -202,17 +156,6 @@ Class | Method | HTTP request | Description
 
 Authentication schemes defined for the API:
 ### kagi
-
-- **Type**: HTTP Bearer token authentication
-
-Example
-
-```go
-auth := context.WithValue(context.Background(), openapi.ContextAccessToken, "BEARER_TOKEN_STRING")
-r, err := client.Service.Operation(auth, args)
-```
-
-### kagi-translate
 
 - **Type**: HTTP Bearer token authentication
 

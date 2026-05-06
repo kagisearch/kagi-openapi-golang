@@ -99,48 +99,6 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		OperationServers: map[string]ServerConfigurations{
-			"TranslateAPIService.Translate": {
-				{
-					URL: "https://translate.kagi.com",
-					Description: "Translate production endpoint",
-				},
-			},
-			"TranslateAPIService.TranslateAlternatives": {
-				{
-					URL: "https://translate.kagi.com",
-					Description: "Translate production endpoint",
-				},
-			},
-			"TranslateAPIService.TranslateDetect": {
-				{
-					URL: "https://translate.kagi.com",
-					Description: "Translate production endpoint",
-				},
-			},
-			"TranslateAPIService.TranslateDictionary": {
-				{
-					URL: "https://translate.kagi.com",
-					Description: "Translate production endpoint",
-				},
-			},
-			"TranslateAPIService.TranslateListLanguages": {
-				{
-					URL: "https://translate.kagi.com",
-					Description: "Translate production endpoint",
-				},
-			},
-			"TranslateAPIService.TranslateRomanize": {
-				{
-					URL: "https://translate.kagi.com",
-					Description: "Translate production endpoint",
-				},
-			},
-			"TranslateAPIService.TranslateWordInsights": {
-				{
-					URL: "https://translate.kagi.com",
-					Description: "Translate production endpoint",
-				},
-			},
 		},
 	}
 	return cfg
