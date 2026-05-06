@@ -18,8 +18,7 @@ info:
     \ to build your own custom library.\n\n- [Golang](https://github.com/kagisearch/kagi-api-golang)\n\
     - [Python](https://github.com/kagisearch/kagi-api-python)\n- [Rust](https://github.com/kagisearch/kagi-api-rust)\n\
     \n### Unofficial Client Libraries\n\nThere also exist third party libraries for\
-    \ interacting with the Kagi API.\n\n- [kagigo for Go](https://github.com/httpjamesm/kagigo)\
-    \ - FastGPT & Universal Summarizer\n- [kagi-api](https://crates.io/crates/kagi-api)\
+    \ interacting with the Kagi API.\n\n- [kagi-api](https://crates.io/crates/kagi-api)\
     \ for Rust\n- [kagi-api](https://alchemists.io/projects/kagi-api) for Ruby\n-\
     \ [kagi-dotnet](https://github.com/patchoulish/kagi-dotnet) for C#/.NET\n\n###\
     \ API Status\n\nOur existing API, the \"v0\" beta API, is being replaced with\
