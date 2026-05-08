@@ -1,4 +1,4 @@
-module github.com/kagisearch/kagi-api-golang
+module github.com/kagisearch/kagi-openapi-golang
 
 go 1.23
 

@@ -23,7 +23,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/kagisearch/kagi-api-golang"
+	openapiclient "github.com/kagisearch/kagi-openapi-golang"
 )
 
 func main() {
