@@ -35,9 +35,7 @@ servers:
   url: https://kagi.com/api/v1
 tags:
 - description: |
-    The Search API is a feature-rich endpoint for search products and agents. It gives programmable access to Kagi's premium search results pulled from many different sources - including our in-house indexes - and re-ranked to surface accurate answers and interesting finds. Because we do not accept money for paid placement or advertising, the results are naturally more in tune to the search being performed.
-
-    You can read about our approach towards search [on our blog](https://blog.kagi.com/the-many-benefits-of-paying-for-search).
+    The Search API is a feature-rich endpoint for search products and agents. It gives programmable access to Kagi's premium search results pulled from many different sources - including our in-house indexes - and re-ranked to surface accurate answers and interesting finds. You can read about our approach towards search [on our blog](https://blog.kagi.com/the-many-benefits-of-paying-for-search).
 
     The API supports most of the features that we offer through our web UI, including [Lenses](https://help.kagi.com/kagi/features/lenses.html).
 
@@ -765,6 +763,9 @@ components:
           - json
           - markdown
           type: string
+          x-badges:
+          - name: EXPERIMENTAL
+            position: after
         lens_id:
           description: Lens to apply to the search. Can be a built-in lens's identifier
             or a lens ID as shown on https://kagi.com/settings/lenses when a lens
