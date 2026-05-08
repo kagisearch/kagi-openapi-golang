@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Query** | **string** | Search query to run. | 
 **Workflow** | Pointer to **string** | Type of results to return. | [optional] [default to "search"]
-**Format** | Pointer to **string** | Format to serialize the API response as. | [optional] [default to "json"]
+**Format** | Pointer to **string** | **(EXPERIMENTAL)** Format to serialize the API response as. The exact contents and structure of markdown output is still being worked on - please send your feedback! | [optional] [default to "json"]
 **LensId** | Pointer to **string** | Lens to apply to the search. Can be a built-in lens&#39;s identifier or a lens ID as shown on https://kagi.com/settings/lenses when a lens is set to be shareable. Can be just the ID portion of the URL (&#x60;https://kagi.com/lenses/ID&#x60;) or the full URL. | [optional] 
 **Lens** | Pointer to [**SearchRequestLens**](SearchRequestLens.md) |  | [optional] 
 **Timeout** | Pointer to **float32** | Number of seconds to allow for collecting search results. Lower values will return results more quickly, but may be lower quality or inconsistent between calls. If omitted, will use the latest recommended value by Kagi. | [optional] 
@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **Limit** | Pointer to **int32** | Maximum number of results to return. Must be between 1 and 1024. | [optional] 
 **Filters** | Pointer to [**SearchRequestFilters**](SearchRequestFilters.md) |  | [optional] 
 **Extract** | Pointer to [**SearchRequestExtract**](SearchRequestExtract.md) |  | [optional] 
+**SafeSearch** | Pointer to **bool** | Whether safe search is enabled, omitting potentially NSFW content. | [optional] [default to true]
 **Personalizations** | Pointer to [**SearchRequestPersonalizations**](SearchRequestPersonalizations.md) |  | [optional] 
 
 ## Methods
@@ -279,6 +280,31 @@ SetExtract sets Extract field to given value.
 `func (o *SearchRequest) HasExtract() bool`
 
 HasExtract returns a boolean if a field has been set.
+
+### GetSafeSearch
+
+`func (o *SearchRequest) GetSafeSearch() bool`
+
+GetSafeSearch returns the SafeSearch field if non-nil, zero value otherwise.
+
+### GetSafeSearchOk
+
+`func (o *SearchRequest) GetSafeSearchOk() (*bool, bool)`
+
+GetSafeSearchOk returns a tuple with the SafeSearch field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSafeSearch
+
+`func (o *SearchRequest) SetSafeSearch(v bool)`
+
+SetSafeSearch sets SafeSearch field to given value.
+
+### HasSafeSearch
+
+`func (o *SearchRequest) HasSafeSearch() bool`
+
+HasSafeSearch returns a boolean if a field has been set.
 
 ### GetPersonalizations
 

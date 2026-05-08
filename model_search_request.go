@@ -26,7 +26,7 @@ type SearchRequest struct {
 	Query string `json:"query"`
 	// Type of results to return.
 	Workflow *string `json:"workflow,omitempty"`
-	// Format to serialize the API response as.
+	// **(EXPERIMENTAL)** Format to serialize the API response as. The exact contents and structure of markdown output is still being worked on - please send your feedback!
 	Format *string `json:"format,omitempty"`
 	// Lens to apply to the search. Can be a built-in lens's identifier or a lens ID as shown on https://kagi.com/settings/lenses when a lens is set to be shareable. Can be just the ID portion of the URL (`https://kagi.com/lenses/ID`) or the full URL.
 	LensId *string `json:"lens_id,omitempty"`
@@ -39,6 +39,8 @@ type SearchRequest struct {
 	Limit *int32 `json:"limit,omitempty"`
 	Filters *SearchRequestFilters `json:"filters,omitempty"`
 	Extract *SearchRequestExtract `json:"extract,omitempty"`
+	// Whether safe search is enabled, omitting potentially NSFW content.
+	SafeSearch *bool `json:"safe_search,omitempty"`
 	Personalizations *SearchRequestPersonalizations `json:"personalizations,omitempty"`
 }
 
@@ -55,6 +57,8 @@ func NewSearchRequest(query string) *SearchRequest {
 	this.Workflow = &workflow
 	var format string = "json"
 	this.Format = &format
+	var safeSearch bool = true
+	this.SafeSearch = &safeSearch
 	return &this
 }
 
@@ -67,6 +71,8 @@ func NewSearchRequestWithDefaults() *SearchRequest {
 	this.Workflow = &workflow
 	var format string = "json"
 	this.Format = &format
+	var safeSearch bool = true
+	this.SafeSearch = &safeSearch
 	return &this
 }
 
@@ -382,6 +388,38 @@ func (o *SearchRequest) SetExtract(v SearchRequestExtract) {
 	o.Extract = &v
 }
 
+// GetSafeSearch returns the SafeSearch field value if set, zero value otherwise.
+func (o *SearchRequest) GetSafeSearch() bool {
+	if o == nil || IsNil(o.SafeSearch) {
+		var ret bool
+		return ret
+	}
+	return *o.SafeSearch
+}
+
+// GetSafeSearchOk returns a tuple with the SafeSearch field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SearchRequest) GetSafeSearchOk() (*bool, bool) {
+	if o == nil || IsNil(o.SafeSearch) {
+		return nil, false
+	}
+	return o.SafeSearch, true
+}
+
+// HasSafeSearch returns a boolean if a field has been set.
+func (o *SearchRequest) HasSafeSearch() bool {
+	if o != nil && !IsNil(o.SafeSearch) {
+		return true
+	}
+
+	return false
+}
+
+// SetSafeSearch gets a reference to the given bool and assigns it to the SafeSearch field.
+func (o *SearchRequest) SetSafeSearch(v bool) {
+	o.SafeSearch = &v
+}
+
 // GetPersonalizations returns the Personalizations field value if set, zero value otherwise.
 func (o *SearchRequest) GetPersonalizations() SearchRequestPersonalizations {
 	if o == nil || IsNil(o.Personalizations) {
@@ -451,6 +489,9 @@ func (o SearchRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Extract) {
 		toSerialize["extract"] = o.Extract
+	}
+	if !IsNil(o.SafeSearch) {
+		toSerialize["safe_search"] = o.SafeSearch
 	}
 	if !IsNil(o.Personalizations) {
 		toSerialize["personalizations"] = o.Personalizations

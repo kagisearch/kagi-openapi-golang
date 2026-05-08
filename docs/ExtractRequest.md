@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Pages** | [**[]PageInput**](PageInput.md) | Array of pages to extract content from. Must contain 1-10 URLs. Each URL must be a valid HTTPS URL.  | 
 **Timeout** | Pointer to **float32** | Optional timeout in seconds for the extraction operation | [optional] 
-**Format** | Pointer to **string** | Response format | [optional] [default to "json"]
+**Format** | Pointer to **string** | **(EXPERIMENTAL)** Format to serialize the API response as. The exact contents and structure of markdown output is still being worked on - please send your feedback! | [optional] [default to "json"]
 
 ## Methods
 

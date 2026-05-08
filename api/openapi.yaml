@@ -534,11 +534,12 @@ components:
           type: number
         format:
           default: json
-          description: Response format
+          description: '**(EXPERIMENTAL)** Format to serialize the API response as.
+            The exact contents and structure of markdown output is still being worked
+            on - please send your feedback!'
           enum:
           - json
           - markdown
-          example: json
           type: string
       required:
       - pages
@@ -758,14 +759,13 @@ components:
           type: string
         format:
           default: json
-          description: Format to serialize the API response as.
+          description: '**(EXPERIMENTAL)** Format to serialize the API response as.
+            The exact contents and structure of markdown output is still being worked
+            on - please send your feedback!'
           enum:
           - json
           - markdown
           type: string
-          x-badges:
-          - name: EXPERIMENTAL
-            position: after
         lens_id:
           description: Lens to apply to the search. Can be a built-in lens's identifier
             or a lens ID as shown on https://kagi.com/settings/lenses when a lens
@@ -797,6 +797,11 @@ components:
           $ref: "#/components/schemas/search_request_filters"
         extract:
           $ref: "#/components/schemas/search_request_extract"
+        safe_search:
+          default: true
+          description: "Whether safe search is enabled, omitting potentially NSFW\
+            \ content."
+          type: boolean
         personalizations:
           $ref: "#/components/schemas/search_request_personalizations"
       required:

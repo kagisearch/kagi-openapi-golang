@@ -26,7 +26,7 @@ type ExtractRequest struct {
 	Pages []PageInput `json:"pages"`
 	// Optional timeout in seconds for the extraction operation
 	Timeout *float32 `json:"timeout,omitempty"`
-	// Response format
+	// **(EXPERIMENTAL)** Format to serialize the API response as. The exact contents and structure of markdown output is still being worked on - please send your feedback!
 	Format *string `json:"format,omitempty"`
 }
 
