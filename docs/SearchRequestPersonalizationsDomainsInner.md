@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Domain** | Pointer to **string** | The domain to personalize (e.g., \&quot;example.com\&quot;). | [optional] 
-**Bias** | Pointer to **float32** | Bias value to apply to results from this domain. | [optional] 
+**Domain** | **string** | Domain pattern to personalize (e.g., \&quot;example.com\&quot;). Can also be a tld suffix like \&quot;.co.uk\&quot;. | 
+**Kind** | **string** | Handling mode for this domain pattern | 
 
 ## Methods
 
 ### NewSearchRequestPersonalizationsDomainsInner
 
-`func NewSearchRequestPersonalizationsDomainsInner() *SearchRequestPersonalizationsDomainsInner`
+`func NewSearchRequestPersonalizationsDomainsInner(domain string, kind string, ) *SearchRequestPersonalizationsDomainsInner`
 
 NewSearchRequestPersonalizationsDomainsInner instantiates a new SearchRequestPersonalizationsDomainsInner object
 This constructor will assign default values to properties that have it defined,
@@ -45,36 +45,26 @@ and a boolean to check if the value has been set.
 
 SetDomain sets Domain field to given value.
 
-### HasDomain
 
-`func (o *SearchRequestPersonalizationsDomainsInner) HasDomain() bool`
+### GetKind
 
-HasDomain returns a boolean if a field has been set.
+`func (o *SearchRequestPersonalizationsDomainsInner) GetKind() string`
 
-### GetBias
+GetKind returns the Kind field if non-nil, zero value otherwise.
 
-`func (o *SearchRequestPersonalizationsDomainsInner) GetBias() float32`
+### GetKindOk
 
-GetBias returns the Bias field if non-nil, zero value otherwise.
+`func (o *SearchRequestPersonalizationsDomainsInner) GetKindOk() (*string, bool)`
 
-### GetBiasOk
-
-`func (o *SearchRequestPersonalizationsDomainsInner) GetBiasOk() (*float32, bool)`
-
-GetBiasOk returns a tuple with the Bias field if it's non-nil, zero value otherwise
+GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBias
+### SetKind
 
-`func (o *SearchRequestPersonalizationsDomainsInner) SetBias(v float32)`
+`func (o *SearchRequestPersonalizationsDomainsInner) SetKind(v string)`
 
-SetBias sets Bias field to given value.
+SetKind sets Kind field to given value.
 
-### HasBias
-
-`func (o *SearchRequestPersonalizationsDomainsInner) HasBias() bool`
-
-HasBias returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

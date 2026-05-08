@@ -1,9 +1,9 @@
 /*
 Kagi API
 
-The Kagi API provides programmatic access to data that powers our search results & more.   Get started on the [API Dashboard](https://kagi.com/api) to set up billing, manage API keys, and more.  ### Official Client Libraries  We offer the following libraries you can use to interact with the Kagi API. These are generated from an OpenAPI spec. If you have a language you would like to use and it's not in the list, send us a message and we will add it to the list if it is supported. Or you can use the [spec](https://kagi.redocly.app/_spec/openapi.yaml?download) to build your own custom library.  - [Golang](https://github.com/kagisearch/kagi-openapi-golang) - [Python](https://github.com/kagisearch/kagi-openapi-python) - [TypeScript](https://github.com/kagisearch/kagi-openapi-typescript) - [Rust](https://github.com/kagisearch/kagi-openapi-rust)  ### API Status  Our existing API, the \"v0\" beta API, is being replaced with a new version that will be available publicly soon. As changes are made, we will be updating the documentation below when the new features become available.  See the [Support and Community](https://help.kagi.com/kagi/support-and-community/) section for details.  ### Pricing  See our [API Pricing](https://kagi.com/api/pricing) page for standard rates.  ### GitHub Discussions  This is the preferred venue for bug reports and feature requests.  - [Bug Reports](https://github.com/kagisearch/kagi-docs/issues/new/choose) - [Q&A Forum](https://github.com/kagisearch/kagi-docs/discussions/categories/q-a?discussions_q=category%3AQ%26A+label%3Aproduct%3Akagi_search_api) - [API Feature Requests](https://github.com/kagisearch/kagi-docs/discussions/categories/kagi-search-api-feature-requests-ideas)  ### Discord  Join our [Discord](https://kagi.com/discord)! Good for quick questions or chatting about things you've made with our APIs! 
+The Kagi API provides programmatic access to data that powers our search results & more.   Get started on the [API Dashboard](https://kagi.com/api) to set up billing, manage API keys, and more.  ### Official Client Libraries  We offer the following libraries you can use to interact with the Kagi API. These are generated from an OpenAPI spec. If you have a language you would like to use and it's not in the list, send us a message and we will add it to the list if it is supported. Or you can use the [spec](https://kagi.redocly.app/_spec/openapi.yaml?download) to build your own custom library.  - [Golang](https://github.com/kagisearch/kagi-openapi-golang) - [Python](https://github.com/kagisearch/kagi-openapi-python) - [TypeScript](https://github.com/kagisearch/kagi-openapi-typescript) - [Rust](https://github.com/kagisearch/kagi-openapi-rust)  ### API Status  **The v1 API is currently in preview to early access testers.**  Our existing API, the \"v0\" beta API, is being replaced with a new version that will be available publicly soon. As changes are made, we will be updating the documentation below when the new features become available.  See the [Support and Community](https://help.kagi.com/kagi/support-and-community/) section for details.  ### Pricing  See our [API Pricing](https://kagi.com/api/pricing) page for standard rates.  ### GitHub Discussions  This is the preferred venue for bug reports and feature requests.  - [Bug Reports](https://github.com/kagisearch/kagi-docs/issues/new/choose) - [Q&A Forum](https://github.com/kagisearch/kagi-docs/discussions/categories/q-a?discussions_q=category%3AQ%26A+label%3Aproduct%3Akagi_search_api) - [API Feature Requests](https://github.com/kagisearch/kagi-docs/discussions/categories/kagi-search-api-feature-requests-ideas)  ### Discord  Join our [Discord](https://kagi.com/discord)! Good for quick questions or chatting about things you've made with our APIs! 
 
-API version: v1
+API version: v1 (Preview)
 Contact: support@kagi.com
 */
 
@@ -13,6 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the SearchRequestPersonalizationsDomainsInner type satisfies the MappedNullable interface at compile time
@@ -20,18 +22,22 @@ var _ MappedNullable = &SearchRequestPersonalizationsDomainsInner{}
 
 // SearchRequestPersonalizationsDomainsInner struct for SearchRequestPersonalizationsDomainsInner
 type SearchRequestPersonalizationsDomainsInner struct {
-	// The domain to personalize (e.g., \"example.com\").
-	Domain *string `json:"domain,omitempty"`
-	// Bias value to apply to results from this domain.
-	Bias *float32 `json:"bias,omitempty"`
+	// Domain pattern to personalize (e.g., \"example.com\"). Can also be a tld suffix like \".co.uk\".
+	Domain string `json:"domain"`
+	// Handling mode for this domain pattern
+	Kind string `json:"kind"`
 }
+
+type _SearchRequestPersonalizationsDomainsInner SearchRequestPersonalizationsDomainsInner
 
 // NewSearchRequestPersonalizationsDomainsInner instantiates a new SearchRequestPersonalizationsDomainsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSearchRequestPersonalizationsDomainsInner() *SearchRequestPersonalizationsDomainsInner {
+func NewSearchRequestPersonalizationsDomainsInner(domain string, kind string) *SearchRequestPersonalizationsDomainsInner {
 	this := SearchRequestPersonalizationsDomainsInner{}
+	this.Domain = domain
+	this.Kind = kind
 	return &this
 }
 
@@ -43,68 +49,52 @@ func NewSearchRequestPersonalizationsDomainsInnerWithDefaults() *SearchRequestPe
 	return &this
 }
 
-// GetDomain returns the Domain field value if set, zero value otherwise.
+// GetDomain returns the Domain field value
 func (o *SearchRequestPersonalizationsDomainsInner) GetDomain() string {
-	if o == nil || IsNil(o.Domain) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Domain
+
+	return o.Domain
 }
 
-// GetDomainOk returns a tuple with the Domain field value if set, nil otherwise
+// GetDomainOk returns a tuple with the Domain field value
 // and a boolean to check if the value has been set.
 func (o *SearchRequestPersonalizationsDomainsInner) GetDomainOk() (*string, bool) {
-	if o == nil || IsNil(o.Domain) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Domain, true
+	return &o.Domain, true
 }
 
-// HasDomain returns a boolean if a field has been set.
-func (o *SearchRequestPersonalizationsDomainsInner) HasDomain() bool {
-	if o != nil && !IsNil(o.Domain) {
-		return true
-	}
-
-	return false
-}
-
-// SetDomain gets a reference to the given string and assigns it to the Domain field.
+// SetDomain sets field value
 func (o *SearchRequestPersonalizationsDomainsInner) SetDomain(v string) {
-	o.Domain = &v
+	o.Domain = v
 }
 
-// GetBias returns the Bias field value if set, zero value otherwise.
-func (o *SearchRequestPersonalizationsDomainsInner) GetBias() float32 {
-	if o == nil || IsNil(o.Bias) {
-		var ret float32
+// GetKind returns the Kind field value
+func (o *SearchRequestPersonalizationsDomainsInner) GetKind() string {
+	if o == nil {
+		var ret string
 		return ret
 	}
-	return *o.Bias
+
+	return o.Kind
 }
 
-// GetBiasOk returns a tuple with the Bias field value if set, nil otherwise
+// GetKindOk returns a tuple with the Kind field value
 // and a boolean to check if the value has been set.
-func (o *SearchRequestPersonalizationsDomainsInner) GetBiasOk() (*float32, bool) {
-	if o == nil || IsNil(o.Bias) {
+func (o *SearchRequestPersonalizationsDomainsInner) GetKindOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Bias, true
+	return &o.Kind, true
 }
 
-// HasBias returns a boolean if a field has been set.
-func (o *SearchRequestPersonalizationsDomainsInner) HasBias() bool {
-	if o != nil && !IsNil(o.Bias) {
-		return true
-	}
-
-	return false
-}
-
-// SetBias gets a reference to the given float32 and assigns it to the Bias field.
-func (o *SearchRequestPersonalizationsDomainsInner) SetBias(v float32) {
-	o.Bias = &v
+// SetKind sets field value
+func (o *SearchRequestPersonalizationsDomainsInner) SetKind(v string) {
+	o.Kind = v
 }
 
 func (o SearchRequestPersonalizationsDomainsInner) MarshalJSON() ([]byte, error) {
@@ -117,13 +107,47 @@ func (o SearchRequestPersonalizationsDomainsInner) MarshalJSON() ([]byte, error)
 
 func (o SearchRequestPersonalizationsDomainsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Domain) {
-		toSerialize["domain"] = o.Domain
-	}
-	if !IsNil(o.Bias) {
-		toSerialize["bias"] = o.Bias
-	}
+	toSerialize["domain"] = o.Domain
+	toSerialize["kind"] = o.Kind
 	return toSerialize, nil
+}
+
+func (o *SearchRequestPersonalizationsDomainsInner) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"domain",
+		"kind",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSearchRequestPersonalizationsDomainsInner := _SearchRequestPersonalizationsDomainsInner{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varSearchRequestPersonalizationsDomainsInner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SearchRequestPersonalizationsDomainsInner(varSearchRequestPersonalizationsDomainsInner)
+
+	return err
 }
 
 type NullableSearchRequestPersonalizationsDomainsInner struct {

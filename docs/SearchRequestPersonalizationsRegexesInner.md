@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Regex** | Pointer to **string** | The regex pattern to match. | [optional] 
-**Replacement** | Pointer to **string** | The replacement string to apply when the pattern matches. | [optional] 
+**Replacement** | Pointer to **string** | The replacement string to apply when the pattern matches. Will preserve paths and query parameters if not overwritten. You can refer to capture groups with \&quot;$1\&quot;, \&quot;$2\&quot;, etc. | [optional] 
 
 ## Methods
 
