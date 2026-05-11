@@ -3,7 +3,7 @@ Kagi API
 
 The Kagi API provides programmatic access to data that powers our search results & more.   Get started on the [API Dashboard](https://kagi.com/api) to set up billing, manage API keys, and more.  ### Official Client Libraries  We offer the following libraries you can use to interact with the Kagi API. These are generated from an OpenAPI spec. If you have a language you would like to use and it's not in the list, send us a message and we will add it to the list if it is supported. Or you can use the [spec](https://kagi.redocly.app/_spec/openapi.yaml?download) to build your own custom library.  - [Golang](https://github.com/kagisearch/kagi-openapi-golang) - [Python](https://github.com/kagisearch/kagi-openapi-python) - [TypeScript](https://github.com/kagisearch/kagi-openapi-typescript) - [Rust](https://github.com/kagisearch/kagi-openapi-rust)  ### API Status  **The v1 API is currently in preview to early access testers.**  Our existing API, the \"v0\" beta API, is being replaced with a new version that will be available publicly soon. As changes are made, we will be updating the documentation below when the new features become available.  See the [Support and Community](https://help.kagi.com/kagi/support-and-community/) section for details.  ### Pricing  See our [API Pricing](https://kagi.com/api/pricing) page for standard rates.  ### GitHub Discussions  This is the preferred venue for bug reports and feature requests.  - [Bug Reports](https://github.com/kagisearch/kagi-docs/issues/new/choose) - [Q&A Forum](https://github.com/kagisearch/kagi-docs/discussions/categories/q-a?discussions_q=category%3AQ%26A+label%3Aproduct%3Akagi_search_api) - [API Feature Requests](https://github.com/kagisearch/kagi-docs/discussions/categories/kagi-search-api-feature-requests-ideas)  ### Discord  Join our [Discord](https://kagi.com/discord)! Good for quick questions or chatting about things you've made with our APIs! 
 
-API version: v1 (Preview)
+API version: 1
 Contact: support@kagi.com
 */
 
@@ -22,7 +22,6 @@ var _ MappedNullable = &Meta{}
 type Meta struct {
 	// Trace ID that can be used to debug individual API requests. Provide this, if needed, when contacting Kagi support.
 	Trace *string `json:"trace,omitempty"`
-	Id *string `json:"id,omitempty"`
 	// The hostname of the node that fulfilled the request.
 	Node *string `json:"node,omitempty"`
 	// how long the request took to fulfill, excluding round trip to the client.
@@ -79,38 +78,6 @@ func (o *Meta) HasTrace() bool {
 // SetTrace gets a reference to the given string and assigns it to the Trace field.
 func (o *Meta) SetTrace(v string) {
 	o.Trace = &v
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *Meta) GetId() string {
-	if o == nil || IsNil(o.Id) {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Meta) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *Meta) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Meta) SetId(v string) {
-	o.Id = &v
 }
 
 // GetNode returns the Node field value if set, zero value otherwise.
@@ -190,9 +157,6 @@ func (o Meta) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Trace) {
 		toSerialize["trace"] = o.Trace
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
 	if !IsNil(o.Node) {
 		toSerialize["node"] = o.Node
 	}
@@ -222,7 +186,6 @@ func (o *Meta) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "trace")
-		delete(additionalProperties, "id")
 		delete(additionalProperties, "node")
 		delete(additionalProperties, "ms")
 		o.AdditionalProperties = additionalProperties

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Code** | **string** | Namespaced error code | 
-**Url** | **string** | URL to error documentation | 
+**Url** | **string** | URL to error documentation.  **NOTE:** These URLs are still a work in progress and will currently return a 404 error. These will be updated to real URLs as the preview period continues.  | 
 **Message** | Pointer to **NullableString** | Human-readable error message | [optional] 
 **Location** | Pointer to **NullableString** | Field location where the error occurred | [optional] 
 

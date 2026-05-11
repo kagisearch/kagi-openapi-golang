@@ -3,7 +3,7 @@ Kagi API
 
 The Kagi API provides programmatic access to data that powers our search results & more.   Get started on the [API Dashboard](https://kagi.com/api) to set up billing, manage API keys, and more.  ### Official Client Libraries  We offer the following libraries you can use to interact with the Kagi API. These are generated from an OpenAPI spec. If you have a language you would like to use and it's not in the list, send us a message and we will add it to the list if it is supported. Or you can use the [spec](https://kagi.redocly.app/_spec/openapi.yaml?download) to build your own custom library.  - [Golang](https://github.com/kagisearch/kagi-openapi-golang) - [Python](https://github.com/kagisearch/kagi-openapi-python) - [TypeScript](https://github.com/kagisearch/kagi-openapi-typescript) - [Rust](https://github.com/kagisearch/kagi-openapi-rust)  ### API Status  **The v1 API is currently in preview to early access testers.**  Our existing API, the \"v0\" beta API, is being replaced with a new version that will be available publicly soon. As changes are made, we will be updating the documentation below when the new features become available.  See the [Support and Community](https://help.kagi.com/kagi/support-and-community/) section for details.  ### Pricing  See our [API Pricing](https://kagi.com/api/pricing) page for standard rates.  ### GitHub Discussions  This is the preferred venue for bug reports and feature requests.  - [Bug Reports](https://github.com/kagisearch/kagi-docs/issues/new/choose) - [Q&A Forum](https://github.com/kagisearch/kagi-docs/discussions/categories/q-a?discussions_q=category%3AQ%26A+label%3Aproduct%3Akagi_search_api) - [API Feature Requests](https://github.com/kagisearch/kagi-docs/discussions/categories/kagi-search-api-feature-requests-ideas)  ### Discord  Join our [Discord](https://kagi.com/discord)! Good for quick questions or chatting about things you've made with our APIs! 
 
-API version: v1 (Preview)
+API version: 1
 Contact: support@kagi.com
 */
 
@@ -35,7 +35,7 @@ type SearchRequest struct {
 	Timeout *float32 `json:"timeout,omitempty"`
 	// Page number for paginated results. Must be between 1 and 10.
 	Page *int32 `json:"page,omitempty"`
-	// Maximum number of results to return. Must be between 1 and 1024.
+	// Maximum number of results to return. Must be between 1 and 1024.  **NOTE:** This does not change the amount of results requested, it only limits the maximum amount returned. If omitted, the API always gives you the most results we can get in a single pass. 
 	Limit *int32 `json:"limit,omitempty"`
 	Filters *SearchRequestFilters `json:"filters,omitempty"`
 	Extract *SearchRequestExtract `json:"extract,omitempty"`

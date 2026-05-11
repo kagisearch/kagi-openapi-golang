@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Count** | Pointer to **int32** | Number of search results to extract content from. Must be between 1 and 10. | [optional] 
-**Timeout** | Pointer to **float32** | Timeout in seconds for extraction of each page. If omitted, uses the default timeout. | [optional] 
+**Timeout** | Pointer to **float32** | Timeout in seconds for extraction of each page. If omitted, uses the default timeout. This time budget is in addition to the allocated top-level search timeout, so that you can control both independently. | [optional] 
 
 ## Methods
 

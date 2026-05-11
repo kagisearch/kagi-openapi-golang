@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Trace** | Pointer to **string** | Trace ID that can be used to debug individual API requests. Provide this, if needed, when contacting Kagi support. | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
 **Node** | Pointer to **string** | The hostname of the node that fulfilled the request. | [optional] 
 **Ms** | Pointer to **int32** | how long the request took to fulfill, excluding round trip to the client. | [optional] 
 
@@ -52,31 +51,6 @@ SetTrace sets Trace field to given value.
 `func (o *Meta) HasTrace() bool`
 
 HasTrace returns a boolean if a field has been set.
-
-### GetId
-
-`func (o *Meta) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *Meta) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *Meta) SetId(v string)`
-
-SetId sets Id field to given value.
-
-### HasId
-
-`func (o *Meta) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetNode
 

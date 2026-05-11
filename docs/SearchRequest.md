@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Lens** | Pointer to [**SearchRequestLens**](SearchRequestLens.md) |  | [optional] 
 **Timeout** | Pointer to **float32** | Number of seconds to allow for collecting search results. Lower values will return results more quickly, but may be lower quality or inconsistent between calls. If omitted, will use the latest recommended value by Kagi. | [optional] 
 **Page** | Pointer to **int32** | Page number for paginated results. Must be between 1 and 10. | [optional] 
-**Limit** | Pointer to **int32** | Maximum number of results to return. Must be between 1 and 1024. | [optional] 
+**Limit** | Pointer to **int32** | Maximum number of results to return. Must be between 1 and 1024.  **NOTE:** This does not change the amount of results requested, it only limits the maximum amount returned. If omitted, the API always gives you the most results we can get in a single pass.  | [optional] 
 **Filters** | Pointer to [**SearchRequestFilters**](SearchRequestFilters.md) |  | [optional] 
 **Extract** | Pointer to [**SearchRequestExtract**](SearchRequestExtract.md) |  | [optional] 
 **SafeSearch** | Pointer to **bool** | Whether safe search is enabled, omitting potentially NSFW content. | [optional] [default to true]
