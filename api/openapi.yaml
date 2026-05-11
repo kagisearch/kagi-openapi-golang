@@ -260,7 +260,7 @@ paths:
                   pages:
                   - url: https://example.com/article1
                   - url: https://example.com/article2
-                  timeout: 30
+                  timeout: 1.337
                   format: json
             schema:
               $ref: "#/components/schemas/extractRequest"
@@ -527,9 +527,14 @@ components:
           minItems: 1
           type: array
         timeout:
-          description: Optional timeout in seconds for the extraction operation
-          example: 30
+          description: |
+            Optional timeout in seconds for the extraction operation. Out of range values will be clamped back within range.
+
+            All URLs are fetched concurrently. This timeout applies a time budget for the entire bulk fetch operation.
+          example: 1.337
           format: float
+          maximum: 10
+          minimum: 0.5
           type: number
         format:
           default: json

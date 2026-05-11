@@ -24,7 +24,7 @@ var _ MappedNullable = &ExtractRequest{}
 type ExtractRequest struct {
 	// Array of pages to extract content from. Must contain 1-10 URLs. Each URL must be a valid HTTPS URL. 
 	Pages []PageInput `json:"pages"`
-	// Optional timeout in seconds for the extraction operation
+	// Optional timeout in seconds for the extraction operation. Out of range values will be clamped back within range.  All URLs are fetched concurrently. This timeout applies a time budget for the entire bulk fetch operation. 
 	Timeout *float32 `json:"timeout,omitempty"`
 	// **(EXPERIMENTAL)** Format to serialize the API response as. The exact contents and structure of markdown output is still being worked on - please send your feedback!
 	Format *string `json:"format,omitempty"`
